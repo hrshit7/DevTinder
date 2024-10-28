@@ -18,3 +18,30 @@
 - Order of the routes matter a lot (IMP)
 - Install Postman and make a workspace, then make a collection, then new, then test API call happens.
 - write logic to handle all http methods or api calls and test them on Postman
+- Explore routing and use of ?, *, (), + in the routes
+- use of Regex - /a/ , /.*fly$/
+- Reading the query params in the routes
+- Reading the dynamic routes 
+
+app.get("/user/:id/:name/:age", (req, res)=>{
+    console.log(req.params);
+    res.send({firstName: "Harshit", lastName: "Choudhary"});
+})
+app.get("/ab+c", (req, res)=>{
+    res.send({firstName: "Harshit", lastName: "Choudhary"});
+})
+app.get("/ab=c", (req, res)=>{
+    res.send({firstName: "Harshit", lastName: "Choudhary"});
+})
+app.get("/ab*c", (req, res)=>{
+    res.send({firstName: "Harshit", lastName: "Choudhary"});
+})
+app.get("/a(bc)*d", (req, res)=>{
+    res.send({firstName: "Harshit", lastName: "Choudhary"});
+})
+app.get(/a/, (req, res)=>{
+    res.send({firstName: "Harshit", lastName: "Choudhary"});
+})
+app.get(/.*fly$/, (req, res)=>{
+    res.send({firstName: "Harshit", lastName: "Choudhary"});
+})

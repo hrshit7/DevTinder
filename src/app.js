@@ -5,31 +5,43 @@ const app = express();
 // order matters a lot
 
 // this will only handle get call to /user
-app.get("/user", (req, res)=>{
+
+//params
+app.get("/user/:id/:name/:age", (req, res)=>{
+    console.log(req.params);
     res.send({firstName: "Harshit", lastName: "Choudhary"});
 })
 
-//post 
-app.post("/user", (req, res)=>{
-    //saving data to db
-    res.send("Data stored successfully")
+//query
+app.get("/user", (req, res)=>{
+    console.log(req.query);
+    res.send({firstName: "Harshit", lastName: "Choudhary"});
 })
 
-//delete
-app.delete("/user", (req, res)=>{
-    res.send("Deleted Successfully");
+//multiple b allowed
+app.get("/ab+c", (req, res)=>{
+    res.send({firstName: "Harshit", lastName: "Choudhary"});
 })
 
-//put
-app.put("/user", (req, res)=>{
-    res.send("file saved");
+//starting with ab and ending c only allowd
+app.get("/ab*c", (req, res)=>{
+    res.send({firstName: "Harshit", lastName: "Choudhary"});
 })
 
-//patch
-app.patch("/user", (req, res)=>{
-    res.send("Updated Successfully");
+//use of optional on bc
+app.get("/a(bc)*d", (req, res)=>{
+    res.send({firstName: "Harshit", lastName: "Choudhary"});
 })
 
+//regex contain a
+app.get(/a/, (req, res)=>{
+    res.send({firstName: "Harshit", lastName: "Choudhary"});
+})
+
+//regex ending with fly only
+app.get(/.*fly$/, (req, res)=>{
+    res.send({firstName: "Harshit", lastName: "Choudhary"});
+})
 // this will only handle get calls to /test
 app.use("/test", (req, res)=>{
     res.send("Server for testing"); 
