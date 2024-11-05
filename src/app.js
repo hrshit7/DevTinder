@@ -2,49 +2,27 @@ const express = require("express");
 
 const app = express();
 
-// order matters a lot
-
-// this will only handle get call to /user
-
-//params
-app.get("/user/:id/:name/:age", (req, res)=>{
-    console.log(req.params);
-    res.send({firstName: "Harshit", lastName: "Choudhary"});
-})
-
-//query
-app.get("/user", (req, res)=>{
-    console.log(req.query);
-    res.send({firstName: "Harshit", lastName: "Choudhary"});
-})
-
-//multiple b allowed
-app.get("/ab+c", (req, res)=>{
-    res.send({firstName: "Harshit", lastName: "Choudhary"});
-})
-
-//starting with ab and ending c only allowd
-app.get("/ab*c", (req, res)=>{
-    res.send({firstName: "Harshit", lastName: "Choudhary"});
-})
-
-//use of optional on bc
-app.get("/a(bc)*d", (req, res)=>{
-    res.send({firstName: "Harshit", lastName: "Choudhary"});
-})
-
-//regex contain a
-app.get(/a/, (req, res)=>{
-    res.send({firstName: "Harshit", lastName: "Choudhary"});
-})
-
-//regex ending with fly only
-app.get(/.*fly$/, (req, res)=>{
-    res.send({firstName: "Harshit", lastName: "Choudhary"});
-})
-// this will only handle get calls to /test
-app.use("/test", (req, res)=>{
-    res.send("Server for testing"); 
-})
+app.use("/user", 
+[(req, res, next)=>{
+        console.log("rH")
+        next();},
+    (req, res, next)=>{
+        console.log("rH2")
+        next();
+        },
+        (req, res, next)=>{
+            res.send(';rfejlf')
+            console.log("rH3")
+            next();
+            },
+            (req, res, next)=>{
+                console.log("rH4")
+                next();
+                },
+                (req, res, next)=>{
+                    console.log("rH5")
+                    next();
+                    },]
+)
 
 app.listen(7777, ()=>{console.log("Server started at port 7777....")});

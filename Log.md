@@ -21,4 +21,10 @@
 - Explore routing and use of ?, *, (), + in the routes
 - use of Regex - /a/ , /.*fly$/
 - Reading the query params in the routes
-- Reading the dynamic routes 
+- Reading the dynamic routes
+
+- Multiple Route Handlers
+    - empty route Handler - loop  
+- next()
+- next function and errors along with res.send()
+- app.use("/route", rH, rH2, rH3, rH4);
